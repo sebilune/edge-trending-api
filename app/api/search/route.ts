@@ -6,6 +6,7 @@ import {
   RATE_LIMIT_WINDOW,
 } from "@/config/ratelimit";
 import { CACHE_TTL } from "@/config/cache";
+import { DEFAULT_LIMIT, MAX_LIMIT } from "@/config/limit";
 
 // In-memory cache: stores search results with timestamps.
 const cache: Record<string, { timestamp: number; data: Video[] }> = {};
@@ -17,7 +18,7 @@ const rateLimit: Record<string, { count: number; lastReset: number }> = {};
  * Handles GET requests to /api/search.
  * Query parameters:
  *   - q: search term (required)
- *   - limit: number of results (optional, default 1, max 8)
+ *   - limit: number of results (optional, default DEFAULT_LIMIT, max MAX_LIMIT)
  */
 export async function GET(request: Request) {
   const ip = request.headers.get("x-forwarded-for") || "unknown";
@@ -52,6 +53,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const q = searchParams.get("q");
   const limitParam = searchParams.get("limit");
+
   // Check if query param 'q' exists; if not, return 400 error
   if (!q) {
     return NextResponse.json(
@@ -60,7 +62,7 @@ export async function GET(request: Request) {
     );
   }
 
-  // Parse 'limit' parameter, ensuring it's between 1 and 8
+  // Parse 'limit' parameter, ensuring it's between 1 and MAX_LIMIT
   const limit = parseLimit(limitParam);
 
   // Check if cached result exists and is still valid (within TTL)
@@ -91,10 +93,12 @@ export async function GET(request: Request) {
 }
 
 /**
- * Parses the 'limit' query parameter and ensures it’s a number between 1 and 8.
- * Defaults to 1 if not set or invalid.
+ * Parses the 'limit' query parameter and ensures it’s a number between 1 and MAX_LIMIT.
+ * Defaults to DEFAULT_LIMIT if not set or invalid.
  */
 function parseLimit(limitParam: string | null): number {
   const parsed = parseInt(limitParam ?? "", 10);
-  return isNaN(parsed) ? 1 : Math.max(1, Math.min(parsed, 8));
+  return isNaN(parsed)
+    ? DEFAULT_LIMIT
+    : Math.max(1, Math.min(parsed, MAX_LIMIT));
 }
