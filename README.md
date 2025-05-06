@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# yt-trend-scraper
 
-## Getting Started
+A scraping api that returns trending videos based on a query. This is a **Next.js** project, designed purely as a lightweight back-end service. It uses zero external dependencies outside of Next itself. All front-end dependencies, files, and directories that Next provides have been stripped from this project.
 
-First, run the development server:
+This scraper is a custom-modified version of [scraper-edge](https://www.npmjs.com/package/scraper-edge). It’s designed for ease of deployment on **Vercel** or local environments and can be easily integrated into any existing Next.js project.
+
+This project is:
+
+- ✅ An `/api/search` endpoint that scrapes YouTube search results
+- ✅ Configurable for cache TTL, rate limits, and max result limits
+- ✅ Simple and lightweight
+
+---
+
+## Index
+
+- [yt-trend-scraper](#yt-trend-scraper)
+  - [Index](#index)
+  - [Features](#features)
+  - [How It Works](#how-it-works)
+  - [Installation \& Setup](#installation--setup)
+  - [Configuration](#configuration)
+  - [Deployment](#deployment)
+  - [License](#license)
+
+---
+
+## Features
+
+- **Scrapes YouTube search pages** and extracts video data
+- **Returns JSON payload** with title, link, channel, thumbnail, and views
+- **In-memory cache** speeds up repeated requests
+- **Rate limiting** protects from abuse per IP
+- **Configurable settings** for cache TTL, rate limits, and max result limit
+
+---
+
+## How It Works
+
+1. A GET request is made to `/api/search` with a search term.
+2. The server checks the in-memory cache; if a result exists, it returns cached data.
+3. If no cache, it scrapes the YouTube search results page, extracts embedded JSON (`ytInitialData`), parses video info, and sorts by view count.
+4. The result is cached and sent back as a JSON response.
+
+### /api/search
+
+Query parameters:
+
+- `q` (required): Search term
+- `limit` (optional): Number of results (defaults to 1, maximum defaults to 4, all configurable)
+
+Example local request using `curl`:
+```bash
+curl "http://localhost:3000/api/search?q=lofi&limit=4"
+```
+
+Example response:
+```bash
+{
+  "videos": [
+    {
+      "title": "Lofi Chill Beats",
+      "link": "https://www.youtube.com/watch?v=abc123",
+      "channel": "Lofi Girl",
+      "thumbnail": "https://i.ytimg.com/vi/abc123/hqdefault.jpg",
+      "views": 1250000
+    },
+    ...
+  ]
+}
+```
+Returned fields:
+
+- `title`: Video title text
+- `link`: Full YouTube video URL
+- `channel`: Uploader’s name
+- `thumbnail`: Thumbnail image URL
+- `views`: View count as number
+
+---
+
+## Configuration
+
+Config files are under `config/`:
+
+- `ratelimit.ts` → Enable/disable rate limiting, adjust max requests per window
+- `cache.ts` → Set the cache time-to-live (TTL)
+- `limit.ts` → Set the default and maximum number of videos per request
+
+---
+
+## Installation & Setup
+
+**Clone the repository:**
+
+```bash
+git clone https://github.com/yourusername/yt-trend-scraper.git
+cd yt-trend-scraper
+```
+
+**Install dependencies:**
+
+```bash
+npm install
+```
+
+or
+
+```bash
+bun install
+```
+
+**Test the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+or
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Test `http://localhost:3000search?q=test` to verify it’s running.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To deploy on Vercel:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push your project to GitHub.
+2. Connect the GitHub repository to Vercel.
+3. Vercel detects the Next.js backend and sets up the build automatically.
 
-## Deploy on Vercel
+More details: https://nextjs.org/docs/app/building-your-application/deploying
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT License  
+© [sebilune](https://github.com/sebilune)
