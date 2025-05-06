@@ -1,6 +1,6 @@
 # yt-trend-scraper
 
-A scraping api that returns trending videos based on a query. This is a **Next.js** project, designed purely as a lightweight back-end service. It uses zero external dependencies outside of Next itself. All front-end dependencies, files, and directories that Next provides have been stripped from this project.
+A scraping api that returns trending videos based on a query. This is a **Next.js** project, designed purely as a lightweight back-end service. It uses zero external dependencies outside of Next itself. All front-end dependencies, files, and directories that Next provides have been stripped.
 
 This scraper is a custom-modified version of [scraper-edge](https://www.npmjs.com/package/scraper-edge). It’s designed for ease of deployment on **Vercel** or local environments and can be easily integrated into any existing Next.js project.
 
