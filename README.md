@@ -2,13 +2,13 @@
 
 A scraping API that returns trending videos based on a query. This is a **Next.js** project, designed purely as a lightweight back-end service. It uses zero external dependencies outside of Next itself. The entire API is contained within `api/search/route.ts`, making it simple to drop directly into another project.
 
-This scraper is a modified version of [scraper-edge](https://www.npmjs.com/package/scraper-edge). It’s designed for fast youtube scraping on cloud environments and can be easily integrated into any existing Next.js project.
+This scraper is a modified version of [scraper-edge](https://www.npmjs.com/package/scraper-edge). It’s designed to be as fast as possible cloud environments and can be easily integrated into any existing Next.js project.
 
-**This project is:**
+**This template includes:**
 
 - ✅ An `/api/search` endpoint that scrapes YouTube search results
-- ✅ Configurable for cache TTL, rate limits, and max result limits
-- ✅ Simple and lightweight
+- ✅ Configs for cache TTL, rate limits, and max results
+- ✅ Full back-end Next.js project structure
 
 ---
 
