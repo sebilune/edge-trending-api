@@ -1,6 +1,6 @@
 # yt-trend-scraper-api
 
-A scraping API that returns trending videos based on a query. This is a **Next.js** project, designed purely as a lightweight back-end service. It uses zero external dependencies outside of Next itself. All front-end dependencies, files, and directories that Next provides have been stripped.
+A scraping API that returns trending videos based on a query. This is a **Next.js** project, designed purely as a lightweight back-end service. It uses zero external dependencies outside of Next itself. The entire API is contained within `api/route.ts`, making it simple to drop directly into another project.
 
 This scraper is a custom-modified version of [scraper-edge](https://www.npmjs.com/package/scraper-edge). It’s designed for ease of deployment on **Vercel** or local environments and can be easily integrated into any existing Next.js project.
 
@@ -18,8 +18,9 @@ This project is:
   - [Index](#index)
   - [Features](#features)
   - [How It Works](#how-it-works)
-  - [Installation \& Setup](#installation--setup)
+    - [/api/search](#apisearch)
   - [Configuration](#configuration)
+  - [Installation \& Setup](#installation--setup)
   - [Deployment](#deployment)
   - [License](#license)
 
@@ -50,11 +51,13 @@ Query parameters:
 - `limit` (optional): Number of results (defaults to 1, maximum defaults to 4, all configurable)
 
 Example local request using `curl`:
+
 ```bash
 curl "http://localhost:3000/api/search?q=lofi&limit=4"
 ```
 
 Example response:
+
 ```bash
 {
   "videos": [
@@ -69,6 +72,7 @@ Example response:
   ]
 }
 ```
+
 Returned fields:
 
 - `title`: Video title text
@@ -81,11 +85,54 @@ Returned fields:
 
 ## Configuration
 
-Config files are under `config/`:
+Config variables can be found at the start of `route.ts`:
 
-- `ratelimit.ts` → Enable/disable rate limiting, adjust max requests per window
-- `cache.ts` → Set the cache time-to-live (TTL)
-- `limit.ts` → Set the default and maximum number of videos per request
+```bash
+// Query limiting
+export const DEFAULT_LIMIT = 1;
+export const MAX_LIMIT = 4;
+
+// Caching
+export const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
+
+// Rate limiting
+export const RATE_LIMIT_ENABLED = true;
+export const RATE_LIMIT_MAX = 20;
+export const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+```
+
+This repository has the following `next.config.ts` file:
+
+```bash
+const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/api/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Credentials", value: "true" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET,DELETE,PATCH,POST,PUT",
+          },
+          {
+            key: "Access-Control-Allow-Headers",
+            value:
+              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+          },
+        ],
+      },
+    ];
+  },
+};
+```
+
+This is because if you're integrating this API into your own Next.js project and plan to call it from the client for example, using `fetch()` or `axios()`, you'll need to enable CORS (Cross-Origin Resource Sharing) to avoid browser security errors.
+
+By default, browsers block requests to your API if they’re not served from the same origin or don’t have the proper headers. To allow these requests, this config is needed.
+
+You do _not_ need CORS if the API is only ever called from server-side code (e.g. getServerSideProps, API routes, server actions, cron jobs).
 
 ---
 
