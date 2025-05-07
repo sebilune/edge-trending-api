@@ -89,16 +89,16 @@ Config variables can be found at the start of `route.ts`:
 
 ```bash
 // Query limiting
-export const DEFAULT_LIMIT = 1;
-export const MAX_LIMIT = 4;
+const DEFAULT_LIMIT = 1;
+const MAX_LIMIT = 4;
 
 // Caching
-export const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
+const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
 
 // Rate limiting
-export const RATE_LIMIT_ENABLED = true;
-export const RATE_LIMIT_MAX = 20;
-export const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const RATE_LIMIT_ENABLED = true;
+const RATE_LIMIT_MAX = 20;
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 ```
 
 This repository has the following `next.config.ts` file:

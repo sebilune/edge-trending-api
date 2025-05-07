@@ -4,16 +4,16 @@ import { NextResponse } from "next/server";
 // ▀▄▄ ▀▄▀ █ ▀█ █▀ █ ▀▄█
 
 // Query limiting
-export const DEFAULT_LIMIT = 1; // Default number of videos to return if not specified
-export const MAX_LIMIT = 4; // Maximum number of videos a user can request
+const DEFAULT_LIMIT = 1; // Default number of videos to return if not specified
+const MAX_LIMIT = 4; // Maximum number of videos a user can request
 
 // Caching
-export const CACHE_TTL = 12 * 60 * 60 * 1000; // Cache time-to-live (in milliseconds); here: 12 hours
+const CACHE_TTL = 12 * 60 * 60 * 1000; // Cache time-to-live (in milliseconds); here: 12 hours
 
 // Rate limiting
-export const RATE_LIMIT_ENABLED = true; // Set to false to disable rate limiting
-export const RATE_LIMIT_MAX = 20; // Max number of requests allowed per window
-export const RATE_LIMIT_WINDOW = 60 * 1000; // Time window for rate limiting (in milliseconds); here: 1 minute
+const RATE_LIMIT_ENABLED = true; // Set to false to disable rate limiting
+const RATE_LIMIT_MAX = 20; // Max number of requests allowed per window
+const RATE_LIMIT_WINDOW = 60 * 1000; // Time window for rate limiting (in milliseconds); here: 1 minute
 
 // In-memory cache: stores search results with timestamps.
 const cache: Record<string, { timestamp: number; data: Video[] }> = {};
@@ -24,7 +24,7 @@ const cache: Record<string, { timestamp: number; data: Video[] }> = {};
 /**
  * Type definition for a single YouTube video item.
  */
-export type Video = {
+type Video = {
   title: string;
   link: string;
   channel: string;
@@ -36,7 +36,7 @@ export type Video = {
  * Scrapes YouTube search results page for the given query.
  * Extracts and returns an array of videos, sorted by view count.
  */
-export async function scrapeYouTube(query: string): Promise<Video[]> {
+async function scrapeYouTube(query: string): Promise<Video[]> {
   const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(
     query
   )}`;
