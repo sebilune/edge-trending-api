@@ -29,7 +29,7 @@ This project is:
 ## Features
 
 - **Scrapes YouTube search pages** and extracts video data
-- **Returns JSON payload** with title, link, channel, thumbnail, and views
+- **Returns `JSON` payload** with title, link, channel, thumbnail, and views
 - **In-memory cache** speeds up repeated requests
 - **Rate limiting** protects from abuse per IP
 - **Configurable settings** for cache TTL, rate limits, and max result limit
@@ -38,10 +38,10 @@ This project is:
 
 ## How It Works
 
-1. A GET request is made to `/api/search` with a search term.
+1. A `GET` request is made to `/api/search` with a search term.
 2. The server checks the in-memory cache; if a result exists, it returns cached data.
-3. If no cache, it scrapes the YouTube search results page, extracts embedded JSON (`ytInitialData`), parses video info, and sorts by view count.
-4. The result is cached and sent back as a JSON response.
+3. If no cache, it scrapes the YouTube search results page, extracts embedded `JSON` (`ytInitialData`), parses video info, and sorts by view count.
+4. The result is cached and sent back as a `JSON` response.
 
 ### /api/search
 
