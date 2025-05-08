@@ -4,6 +4,10 @@ A scraping API that returns trending videos based on a query, sorted by view cou
 
 This is a **Next.js** project, it uses zero external dependencies outside of Next itself. The entire API is contained within `api/search/route.ts`, making it easy to plug into existing projects.
 
+**❓ Why Vercel?**
+
+This API was tested on multiple free platforms including Cloudflare Workers, Koyeb, and Fly.io using no proxies or VPS. Only **Vercel** consistently returned valid YouTube results without ever hitting CAPTCHA. Other platforms were blocked or inconsistent due to shared or flagged IPs. Vercel's network avoided this entirely, making it the most reliable free option for scraping.
+
 **This template includes:**
 
 - ✅ An `/api/search` endpoint that scrapes YouTube search results
