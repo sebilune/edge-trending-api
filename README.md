@@ -6,7 +6,7 @@ This is a **Next.js** project, it uses zero external dependencies outside of Nex
 
 **❓ Why Vercel?**
 
-This API was tested on multiple free platforms including Cloudflare Workers, Koyeb, and Fly.io using no proxies or VPS. Only **Vercel** consistently returned valid YouTube results without ever hitting CAPTCHA. Other platforms were blocked or inconsistent due to shared or flagged IPs. Vercel's network avoided this entirely, making it the most reliable free option for scraping.
+This API was tested across free platforms like [Cloudflare Workers](https://workers.cloudflare.com/), [Koyeb](https://koyeb.com/), and [Fly.io](https://fly.io/) without proxies or dedicated IPs. Only **Vercel** consistently returned valid results without hitting CAPTCHA. Its clean network and IPs made it the most dependable free option during testing, especially for lightweight, fast, on-demand queries.
 
 **This template includes:**
 
