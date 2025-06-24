@@ -21,10 +21,10 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 - [yt-trend-scraper-api](#yt-trend-scraper-api)
   - [Index](#index)
   - [Features](#features)
-  - [How It Works](#how-it-works)
+  - [Usage](#usage)
     - [/api/search](#apisearch)
   - [Configuration](#configuration)
-  - [Installation \& Setup](#installation--setup)
+  - [Installation](#installation)
   - [Deployment](#deployment)
   - [License](#license)
 
@@ -33,14 +33,14 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 ## Features
 
 - **Scrapes YouTube search pages** and extracts video data
-- **Returns `JSON` payload** with title, link, channel, thumbnail, and views
+- **Returns `JSON` with title, link, channel, thumbnail, and views
 - **In-memory cache** speeds up repeated requests
 - **Rate limiting** protects from abuse per IP
 - **Configurable settings** for cache TTL, rate limits, and max result limit
 
 ---
 
-## How It Works
+## Usage
 
 1. A `GET` request is made to `/api/search` with a search term.
 2. The server checks the in-memory cache; if a result exists, it returns cached data.
@@ -51,7 +51,7 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 
 Query parameters:
 
-- `q` (required): Search term
+- `q`: Search term
 - `limit` (optional): Number of results (defaults to 1, maximum defaults to 4, all configurable)
 
 Example local request using `curl`:
@@ -132,7 +132,7 @@ const nextConfig: NextConfig = {
 };
 ```
 
-This is because if you're integrating this API into your own Next.js project and plan to call it from the client for example, using `fetch()` or `axios()`, you'll need to enable CORS (Cross-Origin Resource Sharing) to avoid browser security errors.
+If you're integrating this API into your own Next.js project and plan to call it from the client for example, using `fetch()` or `axios()`, you'll need to enable CORS (Cross-Origin Resource Sharing) to avoid browser security errors.
 
 By default, browsers block requests to your API if they’re not served from the same origin or don’t have the proper headers. To allow these requests, this config is needed.
 
@@ -140,7 +140,7 @@ You do _not_ need CORS if the API is only ever called from server-side code (e.g
 
 ---
 
-## Installation & Setup
+## Installation
 
 **Clone the repository:**
 
@@ -155,37 +155,19 @@ cd yt-trend-scraper-api
 npm install
 ```
 
-or
-
-```bash
-bun install
-```
-
 **Test the development server**
 
 ```bash
 npm run dev
 ```
 
-or
-
-```bash
-bun run dev
-```
-
-Test `http://localhost:3000search?q=test` to verify it’s running.
+Test `http://localhost:3000/search?q=test` to verify it’s running.
 
 ---
 
 ## Deployment
 
-To deploy on Vercel:
-
-1. Push your project to GitHub.
-2. Connect the GitHub repository to Vercel.
-3. Vercel detects the Next.js backend and sets up the build automatically.
-
-More details: https://nextjs.org/docs/app/building-your-application/deploying
+https://nextjs.org/docs/app/building-your-application/deploying
 
 ---
 
