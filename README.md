@@ -1,4 +1,4 @@
-# 📈 yt-trend-scraper-api
+# 📈 Youtube Trend Scraper API
 
 A minimal scraping API that returns trending videos based on a query, sorted by view count in descending order.
 
@@ -14,21 +14,15 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 - Configs for cache TTL, rate limits, and max results
 - Back-end Next.js project structure
 
----
-
 ## Index
 
-- [yt-trend-scraper-api](#yt-trend-scraper-api)
-  - [Index](#index)
-  - [Features](#features)
-  - [Usage](#usage)
-    - [/api/search](#apisearch)
-  - [Configuration](#configuration)
-  - [Installation](#installation)
-  - [Deployment](#deployment)
-  - [License](#license)
-
----
+- [Features](#features)
+- [Usage](#usage)
+  - [/api/search](#apisearch)
+- [Configuration](#configuration)
+- [Installation](#installation)
+- [Deployment](#deployment)
+- [License](#license)
 
 ## Features
 
@@ -37,8 +31,6 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 - **In-memory cache** speeds up repeated requests
 - **Rate limiting** protects from abuse per IP
 - **Configurable settings** for cache TTL, rate limits, and max result limit
-
----
 
 ## Usage
 
@@ -84,8 +76,6 @@ Returned fields:
 - `channel`: Uploader’s name
 - `thumbnail`: Thumbnail image URL
 - `views`: View count as number
-
----
 
 ## Configuration
 
@@ -138,8 +128,6 @@ By default, browsers block requests to your API if they’re not served from the
 
 You do _not_ need CORS if the API is only ever called from server-side code (e.g. getServerSideProps, API routes, server actions, cron jobs).
 
----
-
 ## Installation
 
 **Clone the repository:**
@@ -163,13 +151,9 @@ npm run dev
 
 Test `http://localhost:3000/search?q=test` to verify it’s running.
 
----
-
 ## Deployment
 
 https://nextjs.org/docs/app/building-your-application/deploying
-
----
 
 ## License
 
