@@ -1,5 +1,9 @@
 # 📈 Youtube Trend Scraper API
 
+![License](https://img.shields.io/github/license/sebilune/yt-trend-scraper-api)
+![Repo Size](https://img.shields.io/github/repo-size/sebilune/yt-trend-scraper-api)
+![Last Commit](https://img.shields.io/github/last-commit/sebilune/yt-trend-scraper-api)
+
 A minimal scraping API that returns trending videos based on a query, sorted by view count in descending order.
 
 This is a **Next.js** project, it uses zero external dependencies outside of Next itself. The entire API is contained within `api/search/route.ts`, making it easy to plug into existing projects.
@@ -27,7 +31,7 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 ## Features
 
 - **Scrapes YouTube search pages** and extracts video data
-- **Returns `JSON` with title, link, channel, thumbnail, and views
+- **Returns** `JSON` with title, link, channel, thumbnail, and views
 - **In-memory cache** speeds up repeated requests
 - **Rate limiting** protects from abuse per IP
 - **Configurable settings** for cache TTL, rate limits, and max result limit
@@ -153,7 +157,7 @@ Test `http://localhost:3000/search?q=test` to verify it’s running.
 
 ## Deployment
 
-https://nextjs.org/docs/app/building-your-application/deploying
+[![Deploy to Vercel](https://img.shields.io/badge/deploy%20to%20vercel-black?logo=vercel&style=for-the-badge)](https://vercel.com/import/project?template=https://github.com/sebilune/yt-trend-scraper-api)
 
 ## License
 
