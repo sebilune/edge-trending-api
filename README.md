@@ -1,8 +1,8 @@
 # 📈 Edge Trending API
 
-![License](https://img.shields.io/github/license/sebilune/yt-trend-scraper-api)
-![Repo Size](https://img.shields.io/github/repo-size/sebilune/yt-trend-scraper-api)
-![Last Commit](https://img.shields.io/github/last-commit/sebilune/yt-trend-scraper-api)
+![License](https://img.shields.io/github/license/sebilune/edge-trending-api)
+![Repo Size](https://img.shields.io/github/repo-size/sebilune/edge-trending-api)
+![Last Commit](https://img.shields.io/github/last-commit/sebilune/edge-trending-api)
 
 A minimal scraping edge API that returns trending videos based on a query, sorted by view count in descending order.
 
