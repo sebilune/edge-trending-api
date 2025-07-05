@@ -160,5 +160,4 @@ Test `http://localhost:3000/search?q=test` to verify it’s running.
 
 ## License
 
-MIT License  
-© [sebilune](https://github.com/sebilune)
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
