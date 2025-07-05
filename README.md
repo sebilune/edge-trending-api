@@ -1,14 +1,14 @@
-# 📈 Youtube Trend Scraper API
+# 📈 Edge Trending API
 
 ![License](https://img.shields.io/github/license/sebilune/yt-trend-scraper-api)
 ![Repo Size](https://img.shields.io/github/repo-size/sebilune/yt-trend-scraper-api)
 ![Last Commit](https://img.shields.io/github/last-commit/sebilune/yt-trend-scraper-api)
 
-A minimal scraping API that returns trending videos based on a query, sorted by view count in descending order.
+A minimal scraping edge API that returns trending videos based on a query, sorted by view count in descending order.
 
-This is a **Next.js** project, it uses zero external dependencies outside of Next itself. The entire API is contained within `api/search/route.ts`, making it easy to plug into existing projects.
+This is a **Next.js** API, it uses zero external dependencies outside of Next itself. The entire API is contained within `api/search/route.ts`, making it easy to plug into existing projects.
 
-**Why Vercel?**
+**Why Vercel/Next?**
 
 This API was tested across free platforms like [Cloudflare Workers](https://workers.cloudflare.com/), [Koyeb](https://koyeb.com/), and [Fly.io](https://fly.io/) without proxies or dedicated IPs. Only **Vercel** consistently returned valid results without hitting CAPTCHA. Its clean network made it the most dependable free option during testing, especially for lightweight, fast queries.
 
@@ -17,6 +17,8 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 
 ## Index
 
+- [📈 Edge Trending API](#-edge-trending-api)
+  - [Index](#index)
   - [Features](#features)
   - [Usage](#usage)
     - [/api/search](#apisearch)
