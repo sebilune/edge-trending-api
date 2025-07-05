@@ -12,19 +12,11 @@ This is a **Next.js** project, it uses zero external dependencies outside of Nex
 
 This API was tested across free platforms like [Cloudflare Workers](https://workers.cloudflare.com/), [Koyeb](https://koyeb.com/), and [Fly.io](https://fly.io/) without proxies or dedicated IPs. Only **Vercel** consistently returned valid results without hitting CAPTCHA. Its clean network made it the most dependable free option during testing, especially for lightweight, fast queries.
 
-**Features:**
-
-- An `/api/search` endpoint that scrapes YouTube search results
-- Configs for cache TTL, rate limits, and max results
-- Back-end Next.js project structure
-
 [![Try it](https://img.shields.io/badge/try--it-hoppscotch-blue?style=for-the-badge&logo=hoppscotch)](https://hopp.sh/r/wleDtjiCycfg)
 [![Try it](https://img.shields.io/badge/try--it-postman-orange?style=for-the-badge&logo=postman)](https://www.postman.com/sebi-51246/scraper-demo/request/z7wfc4d/youtube-trending-api)
 
 ## Index
 
-- [📈 Youtube Trend Scraper API](#-youtube-trend-scraper-api)
-  - [Index](#index)
   - [Features](#features)
   - [Usage](#usage)
     - [/api/search](#apisearch)
@@ -35,10 +27,10 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 
 ## Features
 
-- **Scrapes YouTube search pages** and extracts video data
+- An `/api/search` endpoint that scrapes YouTube search results
 - **Returns** `JSON` with title, link, channel, thumbnail, and views
 - **In-memory cache** speeds up repeated requests
-- **Configurable settings** for cache TTL, rate limits, and max result limit
+- **Configurable settings** for cache TTL and min/max result limit
 
 ## Usage
 
