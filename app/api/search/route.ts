@@ -7,13 +7,8 @@ import { NextResponse } from "next/server";
 const DEFAULT_LIMIT = 1; // Default number of videos to return if not specified
 const MAX_LIMIT = 4; // Maximum number of videos a user can request
 
-// Caching
-const CACHE_TTL = 12 * 60 * 60 * 1000; // Cache time-to-live (in milliseconds); here: 12 hours
-
-// Rate limiting
-const RATE_LIMIT_ENABLED = true; // Set to false to disable rate limiting
-const RATE_LIMIT_MAX = 20; // Max number of requests allowed per window
-const RATE_LIMIT_WINDOW = 60 * 1000; // Time window for rate limiting (in milliseconds); here: 1 minute
+// Cache TTL (in milliseconds)
+const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
 
 // In-memory cache: stores search results with timestamps.
 const cache: Record<string, { timestamp: number; data: Video[] }> = {};
@@ -21,9 +16,6 @@ const cache: Record<string, { timestamp: number; data: Video[] }> = {};
 // ▄▀▀ ▄▀▀ █▀▄ ▄▀▄ █▀▄ ██▀ █▀▄
 // ▄█▀ ▀▄▄ █▀▄ █▀█ █▀  █▄▄ █▀▄
 
-/**
- * Type definition for a single YouTube video item.
- */
 type Video = {
   title: string;
   link: string;
@@ -41,7 +33,7 @@ async function scrapeYouTube(query: string): Promise<Video[]> {
     query
   )}`;
 
-  // Fetch YouTube search results page with a desktop User-Agent.
+  // Fetch YouTube search results page with a desktop spoof User Agent.
   const res = await fetch(searchUrl, {
     headers: {
       "User-Agent":
@@ -51,7 +43,7 @@ async function scrapeYouTube(query: string): Promise<Video[]> {
 
   const html = await res.text();
 
-  // Locate the embedded ytInitialData JSON blob.
+  // Locate the embedded ytInitialData JSON blob
   const initialDataMarker = "var ytInitialData = ";
   const startIdx = html.indexOf(initialDataMarker);
   const endIdx = html.indexOf(";</script>", startIdx);
@@ -64,7 +56,7 @@ async function scrapeYouTube(query: string): Promise<Video[]> {
   const jsonData = html.substring(startIdx + initialDataMarker.length, endIdx);
   const parsed = JSON.parse(jsonData);
 
-  // Navigate the JSON structure to reach the list of search results.
+  // Navigate the JSON structure to reach the list of search results
   const contents =
     parsed.contents?.twoColumnSearchResultsRenderer?.primaryContents
       ?.sectionListRenderer?.contents[0]?.itemSectionRenderer?.contents;
@@ -75,7 +67,7 @@ async function scrapeYouTube(query: string): Promise<Video[]> {
 
   const videos: Video[] = [];
 
-  // Loop through each search result item and extract video details.
+  // Loop through each search result item and extract video details
   for (const item of contents) {
     const videoRenderer = item.videoRenderer;
     if (videoRenderer) {
@@ -97,54 +89,22 @@ async function scrapeYouTube(query: string): Promise<Video[]> {
     }
   }
 
-  // Return videos sorted by view count (highest first).
+  // Return videos sorted by view count (highest first)
   return videos.sort((a, b) => b.views - a.views);
 }
-
-// In-memory rate limiter: maps IP → { count, lastReset }
-const rateLimit: Record<string, { count: number; lastReset: number }> = {};
 
 /**
  * Handles GET requests to /api/search.
  * Query parameters:
- *   - q: search term (required)
- *   - limit: number of results (optional, default DEFAULT_LIMIT, max MAX_LIMIT)
+ * - q: search term (required)
+ * - limit: number of results (optional, default DEFAULT_LIMIT, max MAX_LIMIT)
  */
 export async function GET(request: Request) {
-  const ip = request.headers.get("x-forwarded-for") || "unknown";
-
-  // Apply rate limiting only if enabled in config
-  if (RATE_LIMIT_ENABLED) {
-    const now = Date.now();
-    const entry = rateLimit[ip] || { count: 0, lastReset: now };
-
-    // If the window has passed, reset the count
-    if (now - entry.lastReset > RATE_LIMIT_WINDOW) {
-      entry.count = 0;
-      entry.lastReset = now;
-    }
-
-    entry.count += 1;
-    rateLimit[ip] = entry;
-
-    // If over the max allowed requests, block with 429
-    if (entry.count > RATE_LIMIT_MAX) {
-      return NextResponse.json(
-        {
-          error: `Rate limit exceeded. Max ${RATE_LIMIT_MAX} requests per ${
-            RATE_LIMIT_WINDOW / 1000
-          } seconds.`,
-        },
-        { status: 429 }
-      );
-    }
-  }
-
   const { searchParams } = new URL(request.url);
   const q = searchParams.get("q");
   const limitParam = searchParams.get("limit");
 
-  // Check if query param 'q' exists; if not, return 400 error
+  // Check if query param 'q' exists. If not, return 400 (error)
   if (!q) {
     return NextResponse.json(
       { error: "q parameter is required" },
