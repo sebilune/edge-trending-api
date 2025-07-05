@@ -22,20 +22,21 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 
 ## Index
 
-- [Features](#features)
-- [Usage](#usage)
-  - [/api/search](#apisearch)
-- [Configuration](#configuration)
-- [Installation](#installation)
-- [Deployment](#deployment)
-- [License](#license)
+- [📈 Youtube Trend Scraper API](#-youtube-trend-scraper-api)
+  - [Index](#index)
+  - [Features](#features)
+  - [Usage](#usage)
+    - [/api/search](#apisearch)
+  - [Configuration](#configuration)
+  - [Installation](#installation)
+  - [Deployment](#deployment)
+  - [License](#license)
 
 ## Features
 
 - **Scrapes YouTube search pages** and extracts video data
 - **Returns** `JSON` with title, link, channel, thumbnail, and views
 - **In-memory cache** speeds up repeated requests
-- **Rate limiting** protects from abuse per IP
 - **Configurable settings** for cache TTL, rate limits, and max result limit
 
 ## Usage
@@ -94,11 +95,6 @@ const MAX_LIMIT = 4;
 
 // Caching
 const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
-
-// Rate limiting
-const RATE_LIMIT_ENABLED = true;
-const RATE_LIMIT_MAX = 20;
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 ```
 
 This repository has the following `next.config.ts` file:
