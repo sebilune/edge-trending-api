@@ -17,15 +17,13 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 
 ## Index
 
-- [📈 Edge Trending API](#-edge-trending-api)
-  - [Index](#index)
-  - [Features](#features)
-  - [Usage](#usage)
-    - [/api/search](#apisearch)
-  - [Configuration](#configuration)
-  - [Installation](#installation)
-  - [Deployment](#deployment)
-  - [License](#license)
+- [Features](#features)
+- [Usage](#usage)
+  - [/api/search](#apisearch)
+- [Configuration](#configuration)
+- [Installation](#installation)
+- [Deployment](#deployment)
+- [License](#license)
 
 ## Features
 
