@@ -19,6 +19,7 @@ This API was tested across free platforms like [Cloudflare Workers](https://work
 - Back-end Next.js project structure
 
 [![Try it](https://img.shields.io/badge/try--it-hoppscotch-blue?style=for-the-badge&logo=hoppscotch)](https://hopp.sh/r/wleDtjiCycfg)
+[![Try it](https://img.shields.io/badge/try--it-postman-orange?style=for-the-badge&logo=postman)](https://www.postman.com/sebi-51246/scraper-demo/request/z7wfc4d/youtube-trending-api)
 
 ## Index
 
