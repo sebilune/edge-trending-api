@@ -1,5 +1,5 @@
 {
-  "name": "edge-trending-api",
+  "name": "serverless-trending-api",
   "version": "0.1.0",
   "private": true,
   "scripts": {
