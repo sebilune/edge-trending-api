@@ -9,20 +9,18 @@ A minimal scraping serverless API that returns trending videos based on a query,
 
 This is a **Next.js** API, it uses zero external dependencies outside of Next itself. The entire API is contained within `api/search/route.ts`, making it easy to plug into existing projects.
 
-[![Try it](https://img.shields.io/badge/try--it-hoppscotch-blue?style=for-the-badge&logo=hoppscotch)](https://hopp.sh/r/TpAqdU8SPOI9)
+[![Try it](https://img.shields.io/badge/try--it-hoppscotch-blue?style=for-the-badge&logo=hoppscotch)](https://hopp.sh/r/y69mfyXkJGjB)
 [![Try it](https://img.shields.io/badge/try--it-postman-orange?style=for-the-badge&logo=postman)](https://www.postman.com/sebi-51246/scraper-demo/request/z7wfc4d/youtube-trending-api)
 
 ## Index
 
-- [📈 Serverless Trending API](#-serverless-trending-api)
-  - [Index](#index)
-  - [Features](#features)
-  - [Usage](#usage)
-    - [/api/search](#apisearch)
-  - [Configuration](#configuration)
-  - [Installation](#installation)
-  - [Deployment](#deployment)
-  - [License](#license)
+- [Features](#features)
+- [Usage](#usage)
+  - [/api/search](#apisearch)
+- [Configuration](#configuration)
+- [Installation](#installation)
+- [Deployment](#deployment)
+- [License](#license)
 
 ## Features
 
