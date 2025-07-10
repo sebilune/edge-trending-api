@@ -11,8 +11,7 @@ This is a **Next.js** API, it uses zero external dependencies outside of Next it
 
 [![Try it](https://img.shields.io/badge/try--it-hoppscotch-blue?style=for-the-badge&logo=hoppscotch)](https://hopp.sh/r/y69mfyXkJGjB)
 [![Try it](https://img.shields.io/badge/try--it-postman-orange?style=for-the-badge&logo=postman)](https://www.postman.com/sebi-51246/scraper-demo/request/z7wfc4d/youtube-trending-api)
-
-[![Deploy to Vercel](https://img.shields.io/badge/deploy%20to%20vercel-black?logo=vercel&style=for-the-badge)](https://vercel.com/import/project?template=https://github.com/sebilune/yt-trend-scraper-api)
+[![Deploy to Vercel](https://img.shields.io/badge/deploy-vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/import/project?template=https://github.com/sebilune/yt-trend-scraper-api)
 
 ## Index
 
