@@ -12,6 +12,8 @@ This is a **Next.js** API, it uses zero external dependencies outside of Next it
 [![Try it](https://img.shields.io/badge/try--it-hoppscotch-blue?style=for-the-badge&logo=hoppscotch)](https://hopp.sh/r/y69mfyXkJGjB)
 [![Try it](https://img.shields.io/badge/try--it-postman-orange?style=for-the-badge&logo=postman)](https://www.postman.com/sebi-51246/scraper-demo/request/z7wfc4d/youtube-trending-api)
 
+[![Deploy to Vercel](https://img.shields.io/badge/deploy%20to%20vercel-black?logo=vercel&style=for-the-badge)](https://vercel.com/import/project?template=https://github.com/sebilune/yt-trend-scraper-api)
+
 ## Index
 
 - [Features](#features)
@@ -19,7 +21,6 @@ This is a **Next.js** API, it uses zero external dependencies outside of Next it
   - [/api/search](#apisearch)
 - [Configuration](#configuration)
 - [Installation](#installation)
-- [Deployment](#deployment)
 - [License](#license)
 
 ## Features
@@ -87,39 +88,6 @@ const MAX_LIMIT = 4;
 const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
 ```
 
-This repository has the following `next.config.ts` file:
-
-```bash
-const nextConfig: NextConfig = {
-  async headers() {
-    return [
-      {
-        source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          {
-            key: "Access-Control-Allow-Methods",
-            value: "GET,DELETE,PATCH,POST,PUT",
-          },
-          {
-            key: "Access-Control-Allow-Headers",
-            value:
-              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-          },
-        ],
-      },
-    ];
-  },
-};
-```
-
-If you're integrating this API into your own Next.js project and plan to call it from the client for example, using `fetch()` or `axios()`, you'll need to enable CORS (Cross-Origin Resource Sharing) to avoid browser security errors.
-
-By default, browsers block requests to your API if they’re not served from the same origin or don’t have the proper headers. To allow these requests, this config is needed.
-
-You do _not_ need CORS if the API is only ever called from server-side code (e.g. getServerSideProps, API routes, server actions, cron jobs).
-
 ## Installation
 
 **Clone the repository:**
@@ -142,10 +110,6 @@ npm run dev
 ```
 
 Test `http://localhost:3000/search?q=test` to verify it’s running.
-
-## Deployment
-
-[![Deploy to Vercel](https://img.shields.io/badge/deploy%20to%20vercel-black?logo=vercel&style=for-the-badge)](https://vercel.com/import/project?template=https://github.com/sebilune/yt-trend-scraper-api)
 
 ## License
 
